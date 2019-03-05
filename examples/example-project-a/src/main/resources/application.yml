@@ -1,0 +1,10 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+server:
+  port: 9001
+
+spring:
+  application:
+    name: example-project-a
