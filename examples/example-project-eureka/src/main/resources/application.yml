@@ -1,0 +1,7 @@
+server:
+  port: 9000  # 定于注册中心的端口
+
+eureka:
+  client:
+    register-with-eureka: false # 不向自己注册服务
+    fetch-registry: false # 表示自己就是注册中心，不需要去检索服务
