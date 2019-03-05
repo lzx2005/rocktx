@@ -37,14 +37,7 @@ public class AccountServiceImpl implements AccountService {
         if (id <= 0 || amount <= 0) {
             return Resp.fail(1, "参数不正确");
         }
-        Optional<Account> accountOptional = accountRepository.findById(id);
-        if (accountOptional.isPresent()) {
-            Account account = accountOptional.get();
-            account.setAmount(account.getAmount() + amount);
-            accountRepository.save(account);
-            return Resp.success(account);
-        } else {
-            return Resp.fail(2, "找不到账号");
-        }
+        accountRepository.increase(id, amount);
+        return Resp.success(null);
     }
 }

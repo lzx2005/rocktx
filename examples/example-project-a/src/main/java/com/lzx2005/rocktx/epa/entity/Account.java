@@ -10,6 +10,7 @@ import javax.persistence.*;
  */
 @Data
 @Entity
+@Table(name = "account")
 public class Account {
     /**
      * 账号ID
