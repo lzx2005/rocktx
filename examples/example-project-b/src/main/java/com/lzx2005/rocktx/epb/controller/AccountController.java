@@ -22,6 +22,11 @@ public class AccountController {
     }
 
 
+    @GetMapping("/reset")
+    public Resp reset() {
+        return accountService.reset();
+    }
+
     @GetMapping("/{id}")
     public Resp hello(@PathVariable int id) {
         return accountService.amount(id);

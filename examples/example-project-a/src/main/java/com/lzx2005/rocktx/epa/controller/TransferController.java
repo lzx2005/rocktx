@@ -42,6 +42,12 @@ public class TransferController {
         return Resp.success(array);
     }
 
+    @GetMapping("/reset")
+    public Resp reset() {
+        remoteService.reset();
+        return accountService.reset();
+    }
+
     @GetMapping("/{id}")
     public Resp get(@PathVariable int id) {
         return accountService.amount(id);

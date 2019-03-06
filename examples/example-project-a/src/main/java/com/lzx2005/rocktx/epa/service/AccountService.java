@@ -33,4 +33,6 @@ public interface AccountService {
      */
     Resp decreaseAmount(int id, int amount);
 
+    Resp reset();
+
 }

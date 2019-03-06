@@ -57,4 +57,10 @@ public class AccountServiceImpl implements AccountService {
             return Resp.fail(3, "没有更新成功");
         }
     }
+
+    @Override
+    public Resp reset() {
+        accountRepository.reset();
+        return Resp.success(null);
+    }
 }

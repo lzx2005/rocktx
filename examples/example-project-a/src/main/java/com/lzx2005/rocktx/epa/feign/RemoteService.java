@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "EXAMPLE-PROJECT-B")
 public interface RemoteService {
 
+    @RequestMapping(value = "/account/reset", method = RequestMethod.GET)
+    Resp reset();
+
     @RequestMapping(value = "/account/{id}", method = RequestMethod.GET)
     Resp get(@PathVariable int id);
 
