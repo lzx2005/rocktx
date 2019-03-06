@@ -32,4 +32,9 @@ public class AccountController {
         return accountService.increaseAmount(account.getId(), account.getAmount());
     }
 
+    @PostMapping("/decrease")
+    public Resp decreaseAmount(@RequestBody Account account) {
+        return accountService.decreaseAmount(account.getId(), account.getAmount());
+    }
+
 }

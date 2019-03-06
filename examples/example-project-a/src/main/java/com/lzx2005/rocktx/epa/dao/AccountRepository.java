@@ -18,11 +18,11 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Transactional
     @Modifying
     @Query("update Account a set a.amount = a.amount + :amount where a.id = :id")
-    public void increase(@Param("id") Integer id, @Param("amount") int amount);
+    public int increase(@Param("id") Integer id, @Param("amount") int amount);
 
     @Transactional
     @Modifying
     @Query("update Account a set a.amount = a.amount - :amount where a.id = :id")
-    public void decrease(@Param("id") Integer id, @Param("amount") int amount);
+    public int decrease(@Param("id") Integer id, @Param("amount") int amount);
 
 }

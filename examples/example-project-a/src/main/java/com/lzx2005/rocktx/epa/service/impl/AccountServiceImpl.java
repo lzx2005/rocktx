@@ -37,7 +37,24 @@ public class AccountServiceImpl implements AccountService {
         if (id <= 0 || amount <= 0) {
             return Resp.fail(1, "参数不正确");
         }
-        accountRepository.increase(id, amount);
-        return Resp.success(null);
+        int increase = accountRepository.increase(id, amount);
+        if (increase > 0) {
+            return Resp.success(null);
+        } else {
+            return Resp.fail(3, "没有更新成功");
+        }
+    }
+
+    @Override
+    public Resp decreaseAmount(int id, int amount) {
+        if (id <= 0 || amount <= 0) {
+            return Resp.fail(1, "参数不正确");
+        }
+        int decrease = accountRepository.decrease(id, amount);
+        if (decrease > 0) {
+            return Resp.success(null);
+        } else {
+            return Resp.fail(3, "没有更新成功");
+        }
     }
 }

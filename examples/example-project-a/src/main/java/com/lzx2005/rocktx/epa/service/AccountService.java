@@ -9,8 +9,6 @@ import com.lzx2005.rocktx.epa.entity.Account;
  */
 public interface AccountService {
 
-
-
     /**
      * 查询余额
      * @param id  账号ID
@@ -22,9 +20,17 @@ public interface AccountService {
     /**
      * 增加余额
      * @param id        账号ID
-     * @param amount    增加的余额
+     * @param amount    增加的金额
      * @return          是否成功
      */
     Resp increaseAmount(int id, int amount);
+
+    /**
+     * 减少余额
+     * @param id        账号ID
+     * @param amount    减少的金额
+     * @return          是否成功
+     */
+    Resp decreaseAmount(int id, int amount);
 
 }
