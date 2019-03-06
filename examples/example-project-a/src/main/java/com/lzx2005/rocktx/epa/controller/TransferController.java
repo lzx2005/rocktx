@@ -1,8 +1,11 @@
 package com.lzx2005.rocktx.epa.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.lzx2005.rocktx.epa.dto.Resp;
 import com.lzx2005.rocktx.epa.dto.TransferReq;
 import com.lzx2005.rocktx.epa.entity.Account;
+import com.lzx2005.rocktx.epa.feign.RemoteService;
 import com.lzx2005.rocktx.epa.service.AccountService;
 import com.lzx2005.rocktx.epa.service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +21,38 @@ public class TransferController {
 
     private final TransferService transferService;
 
+    private final AccountService accountService;
+
+    private final RemoteService remoteService;
+
     @Autowired
-    public TransferController(TransferService transferService) {
+    public TransferController(TransferService transferService, AccountService accountService, RemoteService remoteService) {
         this.transferService = transferService;
+        this.accountService = accountService;
+        this.remoteService = remoteService;
     }
+
+    @GetMapping("/info")
+    public Resp info() {
+        Resp amount = accountService.amount(1);
+        Resp resp = remoteService.get(1);
+        JSONArray array = new JSONArray();
+        array.add(amount.getData());
+        array.add(resp.getData());
+        return Resp.success(array);
+    }
+
+    @GetMapping("/{id}")
+    public Resp get(@PathVariable int id) {
+        return accountService.amount(id);
+    }
+
 
     @PostMapping("/transfer")
     public Resp increaseAmount(@RequestBody TransferReq transferReq) {
         return transferService.transfer(
-                transferReq.getAId(),
-                transferReq.getBId(),
+                transferReq.getIda(),
+                transferReq.getIdb(),
                 transferReq.getAmount(),
                 transferReq.isTransferOut()
         );

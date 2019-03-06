@@ -21,6 +21,6 @@ public interface RemoteService {
     @RequestMapping(value = "/account/increase", method = RequestMethod.POST)
     Resp increase(@RequestBody Account account);
 
-    @RequestMapping(value = "/account/increase", method = RequestMethod.POST)
+    @RequestMapping(value = "/account/decrease", method = RequestMethod.POST)
     Resp decrease(@RequestBody Account account);
 }

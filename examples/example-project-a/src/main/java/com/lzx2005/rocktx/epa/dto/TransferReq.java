@@ -7,8 +7,8 @@ import lombok.Data;
  */
 @Data
 public class TransferReq {
-    private int aId;
-    private int bId;
+    private int ida;
+    private int idb;
     private int amount;
     private boolean transferOut;
 }
