@@ -11,5 +11,8 @@
 	<modules>
 		<module>modules/rocktx-common</module>
 		<module>modules/rocktx-service</module>
+		<module>examples/example-project-a</module>
+		<module>examples/example-project-b</module>
+		<module>examples/example-project-eureka</module>
 	</modules>
 </project>

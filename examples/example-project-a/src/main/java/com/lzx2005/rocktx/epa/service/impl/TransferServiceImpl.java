@@ -34,51 +34,10 @@ public class TransferServiceImpl implements TransferService {
     private RemoteService remoteService;
 
 
+
     @Override
     @Transactional
     public Resp transfer(int aId, int bId, int amount, boolean transferOut) {
-        try {
-            TransactionListener transactionListener = new TransactionListenerImpl();
-            TransactionMQProducer producer = new TransactionMQProducer("unique_group_name1");
-            ExecutorService executorService = new ThreadPoolExecutor(
-                    2,
-                    5,
-                    100,
-                    TimeUnit.SECONDS,
-                    new ArrayBlockingQueue<Runnable>(2000),
-                    new ThreadFactory() {
-                        @Override
-                        public Thread newThread(Runnable r) {
-                            Thread thread = new Thread(r);
-                            thread.setName("client-transaction-msg-check-thread");
-                            return thread;
-                        }
-                    });
-            producer.setNamesrvAddr("localhost:9876");
-            producer.setExecutorService(executorService);
-            producer.setTransactionListener(transactionListener);
-            producer.start();
-
-            String[] tags = new String[]{"TagA", "TagB", "TagC", "TagD", "TagE"};
-            for (int i = 0; i < 10; i++) {
-                Message msg =
-                        new Message("TopicTest1234", tags[i % tags.length], "KEY" + i,
-                                ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
-                SendResult sendResult = producer.sendMessageInTransaction(msg, null);
-                System.out.printf("%s%n", sendResult);
-
-                Thread.sleep(10);
-            }
-
-            for (int i = 0; i < 100000; i++) {
-                Thread.sleep(1000);
-            }
-            producer.shutdown();
-
-        } catch (MQClientException | UnsupportedEncodingException | InterruptedException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        }
         return Resp.success(null);
 
 
