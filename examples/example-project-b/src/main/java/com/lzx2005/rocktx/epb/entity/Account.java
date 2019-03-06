@@ -1,4 +1,4 @@
-package com.lzx2005.rocktx.epa.entity;
+package com.lzx2005.rocktx.epb.entity;
 
 import lombok.Data;
 
@@ -18,8 +18,6 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-
 
     /**
      * 姓名

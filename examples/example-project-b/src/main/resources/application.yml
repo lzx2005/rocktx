@@ -1,0 +1,22 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
+server:
+  port: 9002
+
+spring:
+  application:
+    name: example-project-b
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:./dbfile/b
+    username: root
+    password: root
+    platform: h2
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
